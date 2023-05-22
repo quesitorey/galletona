@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import dataa from "/phrases.json"
+import phrases from "/public/phrases.json"
 function App() {
 
   const [ index, setIndex ] = useState(0)
@@ -20,32 +20,34 @@ function App() {
 
   }
 
-  useEffect(() => {
+/*  useEffect(() => {
     getPhrase()
   }, [])
 
   async function getPhrase() {
     try {
-      const res = await fetch(dataa)
+      const res = await fetch(phrases)
       data = await res.json()
       setPhrase(data[randomNum()])
     } catch (err) {
       console.log(err)
     }
   }
-
+*/
   let backStyle = {
     backgroundImage: `url(${images[index]})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "100%"
   }
+  let random = Math.floor(Math.random() * phrases.length) + 1
   return (
     <>
       <div className="background" style = {backStyle}>
       <div className='box'>
-        <p className='phrase'>{phrase.phrase}</p>
-        <p className='author'>{phrase.author}</p>
+        <p className='phrase'>{phrases[random].phrase}</p>
+        <p className='author'>{phrases[random].author}</p>
       </div>
+
       <button
       onClick={() => {changeIndex(), getPhrase()}}
       >Probar mi suerte</button>
